@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+
+int main (){
+    char namaFile[] = "";
+    char cek[100];
+    FILE *file;
+
+    printf("Program File Type Checker\n");
+
+    printf("\nMasukkan nama file : ");
+    scanf("%s",namaFile);
+
+    file = fopen(namaFile, "rb");
+
+    if (file == NULL){
+        printf("File tidak ditemukan!");
+    }
+    else {
+        fread(cek,sizeof(cek),1,file);
+        if (strstr(cek,"%PDF-")){
+            printf("\nType file tersebut adalah PDF.");
+        }
+        else if (strstr(cek,"PNG")){
+            printf("\nType file tersebut adalah PNG.");
+        }
+        else{
+            printf("\nType file tersebut tidak terdefinisi.");
+        }
+    }
+    fclose(file);
+}
